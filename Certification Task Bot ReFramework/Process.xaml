@@ -1,0 +1,199 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Store the Username to use for sending mails" Name="in_Username" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Store the Password used to send mails" Name="in_Password" Type="InArgument(ss:SecureString)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1017.6,2669.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1028,2504.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="986.4,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_Config(&quot;Output Folder Path&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Certification ID&quot;).ToString+&quot;.doc&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="986.4,160" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_Config(&quot;Template File&quot;).ToString]" />
+    <p:WordApplicationScope sap2010:Annotation.AnnotationText="Generate The Certificate Template" DisplayName="Word Application Scope" FilePath="[in_Config(&quot;Output Folder Path&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Certification ID&quot;).ToString+&quot;.doc&quot;]" sap:VirtualizedContainerService.HintSize="986.4,1528" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+      <p:WordApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WordDocument">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="952.8,1387.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[in_TransactionItem.SpecificContent(&quot;Gender&quot;).Equals(&quot;Male&quot;)]" DisplayName="Set the Title" sap:VirtualizedContainerService.HintSize="911.2,324" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="433.6,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="Mr" ReplaceAll="False" Search="[in_Config(&quot;Title&quot;).ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </p:WordReplaceText>
+              </If.Then>
+              <If.Else>
+                <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="433.6,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="Mrs" ReplaceAll="False" Search="[in_Config(&quot;Title&quot;).ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </p:WordReplaceText>
+              </If.Else>
+            </If>
+            <p:WordReplaceText Found="{x:Null}" DisplayName="First Name" sap:VirtualizedContainerService.HintSize="911.2,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_TransactionItem.SpecificContent(&quot;First Name&quot;).ToString]" ReplaceAll="False" Search="[in_Config(&quot;First name&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:WordReplaceText>
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Last Name" sap:VirtualizedContainerService.HintSize="911.2,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_TransactionItem.SpecificContent(&quot;Last Name&quot;).ToString]" ReplaceAll="False" Search="[in_Config(&quot;Last Name&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:WordReplaceText>
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Date" sap:VirtualizedContainerService.HintSize="911.2,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_TransactionItem.SpecificContent(&quot;Date&quot;).ToString.Substring(0,10)]" ReplaceAll="False" Search="[in_Config(&quot;Certification Date&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:WordReplaceText>
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Company Name" sap:VirtualizedContainerService.HintSize="911.2,164.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[in_TransactionItem.SpecificContent(&quot;Company&quot;).ToString]" ReplaceAll="False" Search="[in_Config(&quot;Company Name&quot;).ToString]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:WordReplaceText>
+            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[in_Config(&quot;Output Folder Path&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Certification ID&quot;).ToString+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="911.2,111.2" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p:WordExportToPdf>
+          </Sequence>
+        </ActivityAction>
+      </p:WordApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </p:WordApplicationScope>
+    <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="986.4,80.8" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[in_Config(&quot;Output Folder Path&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Certification ID&quot;).ToString+&quot;.doc&quot;]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="986.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Sending Mail" />
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;Message&quot;).ToString]" DisplayName="Send Certificate" Email="[in_Username]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="986.4,146.4" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[in_Config(&quot;Account Name&quot;).ToString]" Password="[new System.Net.NetworkCredential(string.Empty,in_Password).Password]" Port="587" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[in_Config(&quot;Subject&quot;).ToString]" To="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString]">
+      <ui:SendMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+          <InArgument x:TypeArguments="x:String">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Output Folder Path&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Certification ID&quot;).ToString+&quot;.pdf&quot;" />
+          </InArgument>
+        </scg:List>
+      </ui:SendMail.Files>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:SendMail>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="986.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Mail Sent" />
+  </Sequence>
+</Activity>
