@@ -1,0 +1,14 @@
+﻿{
+  "Id": "7ANa5w0rREmpPPK0EVlHDg",
+  "Reference": "MSt0_SJoMkmKzvo4Ad2nMQ/7ANa5w0rREmpPPK0EVlHDg",
+  "Name": "NewApplication",
+  "Type": "App",
+  "Created": "2022-09-09T05:19:52.2197158Z",
+  "CreatedBy": [
+    "UiPath.Platform, Version=22.4.1.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2022-09-09T05:20:00.5870778Z",
+  "UpdatedBy": [
+    "UiPath.Platform, Version=22.4.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

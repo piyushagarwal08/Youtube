@@ -1,0 +1,14 @@
+﻿{
+  "Id": "-k7HaD_KyE6wbwbbhhSNrw",
+  "Reference": "MSt0_SJoMkmKzvo4Ad2nMQ/-k7HaD_KyE6wbwbbhhSNrw",
+  "ParentRef": "MSt0_SJoMkmKzvo4Ad2nMQ/tyFdyC-OF0aNYfzTdjNj_g",
+  "Name": "Get Attribute 'CustomerName'",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Created": "2022-09-09T05:22:45.8266797Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=22.4.7.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=22.4.1.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2022-09-09T05:22:45.8266797Z"
+}

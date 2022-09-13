@@ -1,0 +1,14 @@
+﻿{
+  "Id": "gWVb20qyh0aHqBuTJVng3Q",
+  "Reference": "MSt0_SJoMkmKzvo4Ad2nMQ/gWVb20qyh0aHqBuTJVng3Q",
+  "ParentRef": "MSt0_SJoMkmKzvo4Ad2nMQ/tyFdyC-OF0aNYfzTdjNj_g",
+  "Name": "Get Attribute 'CustomerNameFranceItaly…'",
+  "Type": "Element",
+  "TaxonomyType": "Element",
+  "Created": "2022-09-09T05:20:03.7271578Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=22.4.7.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=22.4.1.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "Updated": "2022-09-09T05:20:03.7271578Z"
+}
